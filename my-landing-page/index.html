@@ -4,28 +4,23 @@
   <meta charset="UTF-8">
   <title>正在跳转...</title>
   <script>
-    // 检测是否为 iOS 设备
-    function isIOS() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var target = "http://jumei888.com/";
 
-    // 跳转逻辑
-    window.onload = function() {
-      var targetURL = "http://jumei888.com/";
-      if (isIOS()) {
-        // iOS 设备尝试使用 iframe 强制 http 跳转
+      // iOS Safari 会强制升级 http -> https，我们尝试用 iframe 先加载一次
+      var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isIOS) {
         var iframe = document.createElement("iframe");
         iframe.style.display = "none";
-        iframe.src = targetURL;
+        iframe.src = target;
         document.body.appendChild(iframe);
-        setTimeout(function() {
-          window.location.href = targetURL;
-        }, 1000);
+        setTimeout(function () {
+          location.replace(target);
+        }, 500);
       } else {
-        // 其他设备直接跳转
-        window.location.href = targetURL;
+        location.replace(target);
       }
-    };
+    });
   </script>
 </head>
 <body>
