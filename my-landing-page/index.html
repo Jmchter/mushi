@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>正在跳转...</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var target = "http://jumei888.com/";
-
-      // 判断是否为 iOS 设备
-      var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      if (isIOS) {
-        // iOS 尝试用 iframe 先加载 http 页面，避免被强制升级为 https
-        var iframe = document.createElement("iframe");
-        iframe.style.display = "none";
-        iframe.src = target;
-        document.body.appendChild(iframe);
-
-        // 延迟跳转
-        setTimeout(function () {
-          location.replace(target);
-        }, 800);
-      } else {
-        // 安卓等其他设备直接跳转
-        location.replace(target);
-      }
-    });
-  </script>
-</head>
-<body>
-  <p>正在跳转到 <a href="http://jumei888.com/">http://jumei888.com</a>，如果没有跳转，请点击链接。</p>
-</body>
+  <head>
+    <meta http-equiv="refresh" content="0; url=http://jumei888.com/" />
+    <title>正在跳转...</title>
+  </head>
+  <body>
+    <p>正在跳转到 <a href="http://jumei888.com/">http://jumei888.com</a>，如果没有跳转，请点击链接。</p>
+  </body>
 </html>
