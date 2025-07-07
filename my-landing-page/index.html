@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=http://jumei888.com/" />
-    <title>正在跳转...</title>
-  </head>
-  <body>
-    <p>正在跳转到 <a href="http://jumei888.com/">http://jumei888.com</a>，如果没有跳转，请点击链接。</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>正在跳转...</title>
+  <script>
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function isWeChat() {
+      return /MicroMessenger/i.test(navigator.userAgent);
+    }
+
+    window.onload = function () {
+      var targetUrl = "http://jumei888.com/";
+
+      if (isWeChat()) {
+        if (isIOS()) {
+          // iOS 微信中使用 window.location.href 避免强制 https
+          window.location.href = targetUrl;
+        } else {
+          // 安卓微信中使用 window.location.replace
+          window.location.replace(targetUrl);
+        }
+      } else {
+        // 非微信环境也跳转
+        window.location.href = targetUrl;
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>正在跳转到 <a href="http://jumei888.com/">http://jumei888.com</a>，如果没有跳转，请点击链接。</p>
+</body>
 </html>
