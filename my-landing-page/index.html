@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>请在浏览器中打开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+    img {
+      max-width: 80%;
+      margin-top: 20px;
+    }
+    .tip {
+      font-size: 18px;
+      color: #333;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>⚠️ 请在浏览器中打开</h2>
+  <div class="tip" id="message">正在检测环境...</div>
+  <img id="wechat-tip" src="wechat-tip.png" alt="请点击右上角菜单，在浏览器中打开" style="display:none;">
+
+  <script>
+    const ua = navigator.userAgent.toLowerCase();
+    const isWeChat = ua.includes('micromessenger');
+    const targetUrl = "http://jumei888.com";
+
+    if (isWeChat) {
+      document.getElementById("message").innerText = "请点击右上角菜单，选择“在浏览器中打开”以继续访问。";
+      document.getElementById("wechat-tip").style.display = "block";
+    } else {
+      window.location.href = targetUrl;
+    }
+  </script>
+</body>
+</html>
