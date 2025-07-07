@@ -4,13 +4,14 @@
     <title>正在跳转...</title>
     <meta charset="UTF-8" />
     <script>
-      // 微信内提示用户在浏览器中打开
       var ua = navigator.userAgent.toLowerCase();
       var isWeChat = ua.indexOf("micromessenger") !== -1;
 
       if (isWeChat) {
+        // 微信内提示用户手动打开
         document.write("<h2 style='text-align:center;margin-top:50px;'>请点击右上角菜单，在浏览器中打开</h2>");
       } else {
+        // 非微信内自动跳转
         window.location.href = "http://u5a.cn/VpZGA";
       }
     </script>
