@@ -1362,21 +1362,21 @@
                 <div class="option-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
-                <h2>基础服务</h2>
+                <h2>低端局</h2>
                 <div class="badge">实惠精选</div>
             </div>
             <div class="option-card mid" onclick="openAreaModal('mid')">
                 <div class="option-icon">
                     <i class="fas fa-crown"></i>
                 </div>
-                <h2>标准服务</h2>
+                <h2>中端局</h2>
                 <div class="badge">品质优选</div>
             </div>
             <div class="option-card high" onclick="openHighModal()">
                 <div class="option-icon">
                     <i class="fas fa-gem"></i>
                 </div>
-                <h2>高端体验</h2>
+                <h2>高端局</h2>
                 <div class="badge">尊享服务</div>
             </div>
         </div>
@@ -1441,112 +1441,6 @@
             </div>
         </div>
         
-        <div id="highModal" class="modal">
-            <div class="modal-content">
-                <div class="back-btn" onclick="closeModal('highModal')">
-                    <i class="fas fa-arrow-left"></i>
-                </div>
-                <h3 class="modal-title">高端局专享</h3>
-                
-                <div class="modal-body">
-                    <div class="modal-intro">
-                        <p>高端品质定制化服务，满足您的个性化需求</p>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3><i class="fas fa-book-open"></i> 服务方案价格</h3>
-                        <div class="package-list">
-                            <div class="package-item">
-                                <div class="package-name">
-                                    <i class="fas fa-bullseye"></i> 大圈 服务方案
-                                </div>
-                                <div class="package-option">
-                                    <span>一课（60分钟）</span>
-                                    <span>￥2.8k</span>
-                                </div>
-                                <div class="package-option">
-                                    <span>两课（100分钟）</span>
-                                    <span>￥4.8k</span>
-                                </div>
-                                <div class="package-option">
-                                    <span>页课（十一点后至自然醒）</span>
-                                    <span>￥8k</span>
-                                </div>
-                            </div>
-                            
-                            <div class="package-item">
-                                <div class="package-name">
-                                    <i class="fas fa-star"></i> 鹦鹉 服务方案
-                                </div>
-                                <div class="package-option">
-                                    <span>一课（60分钟）</span>
-                                    <span>￥4.8k</span>
-                                </div>
-                                <div class="package-option">
-                                    <span>两课（100分钟）</span>
-                                    <span>￥8k</span>
-                                </div>
-                                <div class="package-option">
-                                    <span>页课（十一点后至自然醒）</span>
-                                    <span>￥14k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3><i class="fas fa-info-circle"></i> 服务说明</h3>
-                        <div class="solution-list">
-                            <div class="service-item">
-                                <div class="service-icon"><i class="fas fa-user"></i></div>
-                                <div class="service-text">服务内容，请查看个人主页简介</div>
-                                </div>
-                            <div class="service-item">
-                                <div class="service-icon"><i class="fas fa-comments"></i></div>
-                                <div class="service-text">特殊需求提前沟通，看个人特色</div>
-                                </div>
-                            <div class="service-item">
-                                <div class="service-icon"><i class="fas fa-thumbs-down"></i></div>
-                                <div class="service-text">拒绝低质服务，注重体验与细节</div>
-                                </div>
-                            <div class="service-item">
-                                <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
-                                <div class="service-text">支持提前预约，时间安排更灵活</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3><i class="fas fa-lightbulb"></i> 温馨提示</h3>
-                        <div class="solution-list">
-                            <div class="tip-item">
-                                <div class="tip-icon"><i class="fas fa-check-circle"></i></div>
-                                <div>服务均为高品质定制，非市面上中低端</div>
-                                </div>
-                            <div class="tip-item">
-                                <div class="tip-icon"><i class="fas fa-coins"></i></div>
-                                <div>均需提前支付定金，避免不必要的麻烦</div>
-                                </div>
-                            <div class="tip-item">
-                                <div class="tip-icon"><i class="fas fa-handshake"></i></div>
-                                <div>诚信是基础，细节是态度，服务见真章</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="access-btn" onclick="openServiceLink('high', 'http://www.pivn2.icu/')">
-                        <i class="fas fa-gem"></i>
-                        立即访问高端服务
-                        <span class="integrity-text">尊享体验 · 品质保证</span>
-                    </button>
-                </div>
-                
-                <div class="modal-footer">
-                    <p>聚美臻选 &copy; 2025 | 请让我为您保驾护航</p>
-                </div>
-            </div>
-        </div>
-        
         <div class="loading-overlay" id="loadingOverlay">
             <div class="spinner"></div>
         </div>
@@ -1587,28 +1481,6 @@
 
 
 
-    <div class="ip-checking" id="ipChecking" style="display:none;">
-        <div class="ip-logo">
-            <i class="fas fa-shield-alt"></i>
-        </div>
-        <div class="ip-loader-container">
-            <div class="ip-loader"></div>
-            <div class="ip-loader-inner"></div>
-        </div>
-        <div class="ip-text">安全验证中</div>
-        <div class="ip-subtext">正在检测您的访问区域</div>
-        <div class="ip-weixin-tip" id="ipWeixinTip" style="display:none;font-size:17px;color:#fff;background:rgba(0,0,0,0.18);border-radius:10px;padding:16px 18px;margin:18px 0 0;line-height:1.7;max-width:320px;">
-            请点击右上角 <i class="fas fa-ellipsis-h"></i> <b style="letter-spacing:-5px;">"···"</b>，选择 <b>在浏览器中打开</b>，以获得完整体验。
-        </div>
-        <div class="ip-error" id="ipError">
-            <i class="fas fa-exclamation-triangle"></i> 
-            <p>IP检测失败，请重试或检查网络</p>
-            <button class="retry-btn" id="retryBtn">
-                <i class="fas fa-redo"></i> 重新检测
-            </button>
-        </div>
-    </div>
-
     <div id="ip-check-layer" style="position:fixed;z-index:99999;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg,#0a7e4d 0%,#0fc57c 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;transition:opacity 0.5s;">
         <div style="font-size:70px;margin-bottom:22px;">
             <i class="fas fa-shield-alt fa-bounce"></i>
@@ -1628,6 +1500,7 @@
     </div>
     <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
     <script>
+    // ===================== IP检测与区域限制 =====================
     (function(){
         const failUrl = "https://www.ccser.com/";
         const checkLayer = document.getElementById('ip-check-layer');
@@ -1637,7 +1510,7 @@
         let checked = false;
         let timeoutId = null;
 
-        // 合并允许区域关键词（两套逻辑的区域都包含）
+        // 允许区域关键词
         const allowedRegions = [
             "贵州", "Guizhou", "贵州省", "GZ", "GuiZhou", "黔", "guizhou", "gui zhou",
             "浙江", "Zhejiang", "浙江省", "ZJ", "ZheJiang", "zhejiang", "zhe jiang",
@@ -1685,6 +1558,7 @@
             setTimeout(()=>{ window.location.href = failUrl; }, 1500);
         }
 
+        // 缓存机制
         const cacheKey = 'ip_check_result';
         const blacklistKey = 'blacklist_refresh_count';
         const blacklistTimeKey = 'blacklist_refresh_time';
@@ -1768,6 +1642,7 @@
                 });
         }
         window.addEventListener('DOMContentLoaded', checkIPWithCache);
+        // 工具方法
         window.testIP = function() { checkIP(); };
         window.testWeChat = function() { return /MicroMessenger/i.test(navigator.userAgent); };
         window.clearCache = function() {
@@ -1785,6 +1660,7 @@
             console.log('黑名单刷新时间:', time ? new Date(parseInt(time)).toLocaleString() : '无');
         };
     })();
+    // ===================== END IP检测 =====================
     </script>
 
 
@@ -1859,7 +1735,7 @@
         const areaExternalLinks = {
             low: {},
             mid: {
-                '余杭区': 'https://c.wss.pet/f/hix4cebekh1',                
+                '余杭区': 'https://c.wss.pet/f/hkc8447ccmc',                
                 '拱墅区': 'https://www.qq.com',                   
                 '上城区': 'https://www.taobao.com',              
                 '西湖区': 'https://c.wss.pet/f/hix4cebekh1',                   
@@ -1976,7 +1852,7 @@
                 <h3><i class='fas fa-lightbulb'></i> 温馨提示</h3>
                 <div class="tips-box" style="background:#fff;border-radius:12px;padding:16px 18px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #f2f2f2;">
                     <div>以上内容保证服务太度乖巧听话，任何不过分要求都可以接受，只有你想不到没有集美做不到的。</div>
-                    <div>美团页课暂无，后续会持续更新！均经过视频验证（真人真照）外卖暂时只有高端局支持页课。</div>
+                    <div>美团页课暂无，后续会持续更新！均经过视频验证（真人真照）外卖暂时只有高端体验支持页课。</div>
                 </div>
             </div>
             
@@ -1991,11 +1867,11 @@
             </div>
             
             <div class="modal-section">
-                <h3><i class="fas fa-book-open"></i> 服务方案价格</h3>
+                <h3><i class="fas fa-book-open"></i> 套餐价格</h3>
                 <div class="package-list">
                     <div class="package-item">
                         <div class="package-name">
-                            <i class="fas fa-bullseye"></i> 大圈 服务方案
+                            <i class="fas fa-bullseye"></i> 大圈
                         </div>
                         <div class="package-option">
                             <span>一课（60分钟）</span>
@@ -2013,7 +1889,7 @@
                     
                     <div class="package-item">
                         <div class="package-name">
-                            <i class="fas fa-star"></i> 鹦鹉 服务方案
+                            <i class="fas fa-star"></i> 鹦鹉
                         </div>
                         <div class="package-option">
                             <span>一课（60分钟）</span>
@@ -2073,10 +1949,10 @@
             
             <button class="access-btn" onclick="openServiceLink('high', 'http://www.pivn2.icu/')">
                 <i class="fas fa-gem"></i>
-                立即访问高端服务
+                立即访问高端体验
                 <span class="integrity-text">尊享体验 · 品质保证</span>
+
             </button>
-            
             <div class="modal-footer">
                 <p>聚美臻选 &copy; 2025 | 请让我为您保驾护航</p>
             </div>
@@ -2137,7 +2013,7 @@
             
             const { areaTitle, areaList } = window.domCache;
             
-            if (areaTitle) areaTitle.textContent = type === 'low' ? '低端局区域选择' : '中端局区域选择';
+            if (areaTitle) areaTitle.textContent = type === 'low' ? '低端区域选择' : '中端区域选择';
             if (areaList) areaList.innerHTML = '';
             
             areaData[type].forEach(area => {
@@ -2182,12 +2058,14 @@
                 console.error('DOM cache not initialized');
                 return;
             }
-            
             showLoading();
-            
+            // 动态插入高端局内容到 detailModal
+            if (window.domCache.detailContent) {
+                window.domCache.detailContent.innerHTML = detailData.high;
+            }
             setTimeout(() => {
-                if (window.domCache.highModal) {
-                window.domCache.highModal.classList.add('active');
+                if (window.domCache.detailModal) {
+                    window.domCache.detailModal.classList.add('active');
                 }
                 document.body.style.overflow = 'hidden';
                 hideLoading();
@@ -2285,7 +2163,7 @@
         
         window.updateAreaConfig = function(area, type, action, link) {
             if (type === 'low') {
-                console.log('低端局不使用跳转功能');
+                console.log('低端不使用跳转功能');
                 return;
             }
             if (areaJumpConfig[type]) {
