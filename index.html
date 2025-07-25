@@ -57,13 +57,13 @@
             width: 100%;
             margin: 0 auto;
             position: relative;
-            padding: 18px 15px 0 15px;
+            padding: 18px 15px 8px 15px;
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
-            height: calc(var(--vh, 1vh) * 100);
+            min-height: 100vh;
             overflow: hidden;
         }
         
@@ -1399,12 +1399,6 @@
             position: relative;
             overflow-y: auto;
         }
-        html, body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow-x: hidden;
-        }
     </style>
 </head>
 <body>
@@ -1987,12 +1981,20 @@
 
     function showLayer(dom) {
         if (dom) dom.classList.add('active');
+        if (dom && dom.classList.contains('modal')) {
+            const modalContent = dom.querySelector('.modal-content');
+            if (modalContent) modalContent.style.display = '';
+        }
         if (document.querySelector('.modal.active, .map-modal.active, #photoPreviewLayer[style*="display: flex"]')) {
             document.body.style.overflow = 'hidden';
         }
     }
     function hideLayer(dom) {
         if (dom) dom.classList.remove('active');
+        if (dom && dom.classList.contains('modal')) {
+            const modalContent = dom.querySelector('.modal-content');
+            if (modalContent) modalContent.style.display = 'none';
+        }
         if (!document.querySelector('.modal.active, .map-modal.active, #photoPreviewLayer[style*="display: flex"]')) {
             document.body.style.overflow = '';
         }
@@ -2268,7 +2270,10 @@
         const clientHeight = modalContent.clientHeight;
         if (scrollHeight <= clientHeight) {
             bar.style.height = '0';
+            bar.style.display = 'none'; 
             return;
+        } else {
+            bar.style.display = ''; 
         }
         const maxScroll = scrollHeight - clientHeight;
         const safeScrollTop = Math.max(0, Math.min(scrollTop, maxScroll));
@@ -2287,7 +2292,7 @@
     });
 
     function refreshAllScrollProgress() {
-        document.querySelectorAll('.modal-content').forEach(updateScrollProgress);
+        document.querySelectorAll('.modal.active .modal-content').forEach(updateScrollProgress);
     }
     window.addEventListener('resize', refreshAllScrollProgress);
     const oldOpenHighModal = window.openHighModal;
@@ -2300,13 +2305,6 @@
         if (oldOpenDetailModal) oldOpenDetailModal();
         setTimeout(refreshAllScrollProgress, 350);
     };
-    // 解决 iOS 100vh 溢出问题，确保主界面不会出现滚动条
-    function setContainerHeight() {
-      var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
-    }
-    window.addEventListener('resize', setContainerHeight);
-    setContainerHeight();
     </script>
 </body>
 </html>
