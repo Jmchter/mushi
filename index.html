@@ -2257,11 +2257,11 @@
         }
         const maxScroll = scrollHeight - clientHeight;
         const safeScrollTop = Math.max(0, Math.min(scrollTop, maxScroll));
-        const barHeight = 40; // 统一长度，与服务详情界面一致
-        const maxTop = clientHeight - barHeight;
-        const top = (safeScrollTop / maxScroll) * maxTop;
+        const percent = clientHeight / scrollHeight;
+        const topPercent = safeScrollTop / maxScroll;
+        const barHeight = Math.max(clientHeight * percent, 24); // 最小24px
         bar.style.height = barHeight + 'px';
-        bar.style.top = Math.round(top) + 'px';
+        bar.style.top = (safeScrollTop + (clientHeight - barHeight) * topPercent) + 'px';
     }
 
     document.querySelectorAll('.modal-content').forEach(modalContent => {
