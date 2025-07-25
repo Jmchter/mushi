@@ -461,6 +461,10 @@
             pointer-events: auto;
             scrollbar-width: thin;
             scrollbar-color: #d3d3d3 #f5f5f5;
+            position: relative;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
         
         .modal-content::-webkit-scrollbar {
@@ -2251,11 +2255,13 @@
             bar.style.height = '0';
             return;
         }
+        const maxScroll = scrollHeight - clientHeight;
+        const safeScrollTop = Math.max(0, Math.min(scrollTop, maxScroll));
         const percent = clientHeight / scrollHeight;
-        const topPercent = scrollTop / (scrollHeight - clientHeight);
+        const topPercent = safeScrollTop / maxScroll;
         const barHeight = Math.max(clientHeight * percent, 24); // 最小24px
         bar.style.height = barHeight + 'px';
-        bar.style.top = (scrollTop + (clientHeight - barHeight) * topPercent) + 'px';
+        bar.style.top = (safeScrollTop + (clientHeight - barHeight) * topPercent) + 'px';
     }
 
     document.querySelectorAll('.modal-content').forEach(modalContent => {
