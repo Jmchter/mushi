@@ -64,6 +64,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            height: 100dvh;
             overflow: hidden;
         }
         
@@ -1981,20 +1982,12 @@
 
     function showLayer(dom) {
         if (dom) dom.classList.add('active');
-        if (dom && dom.classList.contains('modal')) {
-            const modalContent = dom.querySelector('.modal-content');
-            if (modalContent) modalContent.style.display = '';
-        }
         if (document.querySelector('.modal.active, .map-modal.active, #photoPreviewLayer[style*="display: flex"]')) {
             document.body.style.overflow = 'hidden';
         }
     }
     function hideLayer(dom) {
         if (dom) dom.classList.remove('active');
-        if (dom && dom.classList.contains('modal')) {
-            const modalContent = dom.querySelector('.modal-content');
-            if (modalContent) modalContent.style.display = 'none';
-        }
         if (!document.querySelector('.modal.active, .map-modal.active, #photoPreviewLayer[style*="display: flex"]')) {
             document.body.style.overflow = '';
         }
@@ -2270,10 +2263,7 @@
         const clientHeight = modalContent.clientHeight;
         if (scrollHeight <= clientHeight) {
             bar.style.height = '0';
-            bar.style.display = 'none'; 
             return;
-        } else {
-            bar.style.display = ''; 
         }
         const maxScroll = scrollHeight - clientHeight;
         const safeScrollTop = Math.max(0, Math.min(scrollTop, maxScroll));
@@ -2292,7 +2282,7 @@
     });
 
     function refreshAllScrollProgress() {
-        document.querySelectorAll('.modal.active .modal-content').forEach(updateScrollProgress);
+        document.querySelectorAll('.modal-content').forEach(updateScrollProgress);
     }
     window.addEventListener('resize', refreshAllScrollProgress);
     const oldOpenHighModal = window.openHighModal;
