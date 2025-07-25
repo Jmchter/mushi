@@ -488,6 +488,15 @@
             width: 0 !important;
             background: transparent !important;
           }
+          body, .container {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+          }
+          body::-webkit-scrollbar, .container::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            background: transparent !important;
+          }
         }
         
         .back-btn {
@@ -2097,12 +2106,14 @@
             }
             document.body.style.overflow = 'hidden';
             hideLoading();
+            setTimeout(refreshAllScrollProgress, 350);
         }, 300);
     }
 
     function openDetailModal() {
         if (window.domCache && window.domCache.detailModal) {
-        window.domCache.detailModal.classList.add('active');
+            window.domCache.detailModal.classList.add('active');
+            setTimeout(refreshAllScrollProgress, 350);
         }
     }
 
@@ -2264,16 +2275,19 @@
         bar.style.top = (safeScrollTop + (clientHeight - barHeight) * topPercent) + 'px';
     }
 
-    document.querySelectorAll('.modal-content').forEach(modalContent => {
-        modalContent.addEventListener('scroll', function() {
-            updateScrollProgress(modalContent);
-        });
-        updateScrollProgress(modalContent);
-    });
-
     function refreshAllScrollProgress() {
         document.querySelectorAll('.modal-content').forEach(updateScrollProgress);
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.modal-content').forEach(modalContent => {
+            modalContent.addEventListener('scroll', function() {
+                updateScrollProgress(modalContent);
+            });
+            updateScrollProgress(modalContent);
+        });
+    });
+
     window.addEventListener('resize', refreshAllScrollProgress);
     const oldOpenHighModal = window.openHighModal;
     window.openHighModal = function() {
