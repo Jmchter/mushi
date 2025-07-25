@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>全杭资源整合</title>
+    <title>全杭资源</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -459,6 +459,31 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             margin: 2px auto 0 auto;
             pointer-events: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #d3d3d3 #f5f5f5;
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+            background: #f5f5f5;
+            border-radius: 6px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #d3d3d3;
+            border-radius: 6px;
+        }
+        /* 隐藏 iOS Safari 及移动端的原生滚动条，仅显示自定义进度条 */
+        @media screen and (max-width: 820px) {
+          .modal-content {
+            scrollbar-width: none !important; /* Firefox */
+            -ms-overflow-style: none !important; /* IE 10+ */
+          }
+          .modal-content::-webkit-scrollbar {
+            display: none !important; /* Chrome/Safari/Webkit */
+            width: 0 !important;
+            background: transparent !important;
+          }
         }
         
         .back-btn {
@@ -1345,13 +1370,31 @@
             border-radius: 0;
             object-fit: contain;
         }
+        /* 右侧浮动进度条 */
+        .scroll-progress-bar {
+            position: absolute;
+            right: 2px;
+            width: 3px;
+            background: #d3d3d3;
+            border-radius: 2px;
+            opacity: 0.7;
+            z-index: 10;
+            transition: height 0.2s, top 0.2s;
+            height: 0;
+            top: 0;
+            pointer-events: none;
+        }
+        .modal-content {
+            position: relative;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo-container">
-                <h1>全杭资源整合</h1>
+                <h1>全杭资源</h1>
                 <div class="subtitle">品质服务 · 臻心之选 · 诚信保障</div>
             </div>
         </header>
@@ -1437,6 +1480,7 @@
                 </div>
                 <h3 class="modal-title" id="detailTitle">服务详情</h3>
                 <div class="modal-body" id="detailContent"></div>
+                <div class="scroll-progress-bar"></div>
             </div>
         </div>
         
@@ -1638,6 +1682,10 @@
                 });
         }
         document.addEventListener("DOMContentLoaded", function() {
+            cacheDOMElements();
+            if (window.domCache && window.domCache.detailContent) {
+                window.domCache.detailContent.innerHTML = detailData.low;
+            }
             const qqNumber = document.getElementById('qqNumber');
             if (qqNumber) {
                 qqNumber.onclick = function() {
@@ -1645,10 +1693,6 @@
                 };
             }
             checkIPWithCache();
-            cacheDOMElements();
-            if (window.domCache && window.domCache.detailContent) {
-                window.domCache.detailContent.innerHTML = detailData.low;
-            }
         });
     })();
 
@@ -1886,16 +1930,6 @@
     
     let currentArea = '';
     let currentType = '';
-    
-    window.onload = function() {
-        cacheDOMElements();
-        if (window.domCache && window.domCache.detailContent) {
-            window.domCache.detailContent.innerHTML = detailData.low;
-        }
-        window.addEventListener('resize', function() {
-            
-        });
-    };
     
     function cacheDOMElements() {
         window.domCache = {
@@ -2208,6 +2242,45 @@
             window.open(fallbackUrl, '_blank');
         }
     }
+
+    function updateScrollProgress(modalContent) {
+        const bar = modalContent.querySelector('.scroll-progress-bar');
+        if (!bar) return;
+        const scrollTop = modalContent.scrollTop;
+        const scrollHeight = modalContent.scrollHeight;
+        const clientHeight = modalContent.clientHeight;
+        if (scrollHeight <= clientHeight) {
+            bar.style.height = '0';
+            return;
+        }
+        const percent = clientHeight / scrollHeight;
+        const topPercent = scrollTop / (scrollHeight - clientHeight);
+        const barHeight = Math.max(clientHeight * percent, 24); // 最小24px
+        bar.style.height = barHeight + 'px';
+        bar.style.top = (scrollTop + (clientHeight - barHeight) * topPercent) + 'px';
+    }
+
+    document.querySelectorAll('.modal-content').forEach(modalContent => {
+        modalContent.addEventListener('scroll', function() {
+            updateScrollProgress(modalContent);
+        });
+        updateScrollProgress(modalContent);
+    });
+
+    function refreshAllScrollProgress() {
+        document.querySelectorAll('.modal-content').forEach(updateScrollProgress);
+    }
+    window.addEventListener('resize', refreshAllScrollProgress);
+    const oldOpenHighModal = window.openHighModal;
+    window.openHighModal = function() {
+        if (oldOpenHighModal) oldOpenHighModal();
+        setTimeout(refreshAllScrollProgress, 350);
+    };
+    const oldOpenDetailModal = window.openDetailModal;
+    window.openDetailModal = function() {
+        if (oldOpenDetailModal) oldOpenDetailModal();
+        setTimeout(refreshAllScrollProgress, 350);
+    };
     </script>
 </body>
 </html>
