@@ -50,6 +50,7 @@
             justify-content: center;
             align-items: center;
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            --vh: 1vh;
         }
         
         .container {
@@ -64,7 +65,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            height: 100dvh;
+            height: calc(var(--vh, 1vh) * 100);
             overflow: hidden;
         }
         
@@ -1704,6 +1705,14 @@
                     window.location.href = 'https://qm.qq.com/q/SKGxuHijm2';
                 };
             }
+            // 修复 iOS 视口高度问题
+            function setVH() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
             checkIPWithCache();
         });
     })();
